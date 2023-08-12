@@ -29,9 +29,15 @@ const ChatNumberInput = () => {
     }
 
     function createRoomHandler(event) {
-        console.log(event.target.value)
         if (event.key === 'Enter') {
-            const room = crypto.randomBytes(length).toString('hex').slice(0, length).toUpperCase(); 
+            let room = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const charactersLength = characters.length;
+            
+            for (let i = 0; i < 5; i++) {
+                room += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            
             console.log(room)
             socket.connect()
             socket.emit('create_room', event.target.value)
