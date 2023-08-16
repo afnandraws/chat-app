@@ -3,3 +3,7 @@ https://socket.io/docs/v4/rooms/
 
 This shows how to send messages to everyone except the person who sent it, this is useful
 https://socket.io/docs/v4/emit-cheatsheet/
+
+Ways that I would make it better:
+
+- Actually use pages and persist the socket across pages

@@ -1,0 +1,12 @@
+.container {
+    background-color: #567AF4;;
+    border-radius: 9px;
+
+    color: red;
+    height: 600px;
+    width: 500px;
+}
+
+.topbar {
+    color: white;
+}

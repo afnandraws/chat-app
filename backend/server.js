@@ -17,18 +17,21 @@ io.on("connection", (socket) => {
 		if (io.sockets.adapter.rooms.get(room) !== undefined) {
 			socket.join(room);
 			console.log("worked");
+
+			socket.emit("send_room", {
+				room: room,
+				users: "",
+			});
 		} else {
 			console.log(`didn't worked`);
+			socket.emit("undefined_room");
 		}
-
-		const data = JSON.stringify(room);
-		console.log(data);
 	});
 
 	socket.on("create_room", (room) => {
 		if (io.sockets.adapter.rooms.get(room) === undefined) {
+			console.log(room);
 			socket.join(room);
-			console.log(io.sockets.adapter.rooms.get(room));
 		}
 	});
 });
