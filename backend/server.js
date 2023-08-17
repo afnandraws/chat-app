@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
 			});
 		} else {
 			console.log(`didn't worked`);
-			socket.emit("undefined_room");
+			socket.emit("undefined_room"); //need to make this on the client side
 		}
 	});
 
@@ -33,6 +33,12 @@ io.on("connection", (socket) => {
 			console.log(room);
 			socket.join(room);
 		}
+	});
+
+	socket.on("send_message", (message) => {
+		console.log(message);
+		socket.to(message.room).emit("receive_message", { message: message });
+		socket.emit("sent_message", true);
 	});
 });
 

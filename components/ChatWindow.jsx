@@ -3,19 +3,33 @@ import send from '../public/send.svg'
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-const ChatWindow = ( {room} ) => {
+
+const ChatWindow = ({ socket }) => {
     const messageRef = useRef()
     const [messages, setMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState('')
-
+    const room = localStorage.getItem('room');
 
     function messageHandler(event) {
         if (event.key === 'Enter') {
-            setMessages([...messages, currentMessage])
+            setMessages([...messages, {message: currentMessage, room: room}])
+            socket.emit('send_message', {message: currentMessage, room: room})
+
         }
     }
 
     useEffect(() => {
+        socket?.on('receive_message',(object) => {
+            console.log(object);
+            setMessages(prev => [...prev, object.message])
+        })
+        socket?.on('sent_message',(message) => {console.log(message)})
+        
+        return () => {socket?.disconnect()};
+    }, [socket])
+    
+    useEffect(() => {
+        console.log(messages)
         messageRef.current.scrollTop = messageRef.current.scrollHeight;
     }, [messages])
     
@@ -27,9 +41,9 @@ const ChatWindow = ( {room} ) => {
                 <button>Users</button>
             </div>
             <div className='chatmessages' ref={messageRef}>
-            {messages?.map(message => (
-                <div key={message} className="message">
-                    <div>{message}</div>
+            {messages?.map((message, index) => (
+                <div key={index} className="message">
+                    <div>{message.message}</div>
                 </div>
             ))}
             <div className="sentmessage">

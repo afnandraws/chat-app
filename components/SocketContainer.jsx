@@ -19,15 +19,15 @@ const SocketContainer = () => {
             localStorage.setItem("room", room.room) //this stores the pageID in the localStorage
             setJoinedRoom(true)
         })
-
-        socket?.on('hello',(message) => {console.log(message)})
         
         if (socket === null) {
             setSocket(io('ws://localhost:8080', { autoConnect: false }))
         }
 
-        return () => {socket?.disconnect()};
-
+        return () => {
+            socket?.disconnect()
+            localStorage.removeItem('room')
+        };
       }, [socket])
 
     
@@ -46,7 +46,8 @@ const SocketContainer = () => {
             for (let i = 0; i < 5; i++) {
                 room += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
-            
+
+            localStorage.setItem("room", room)
             socket.connect() //might not need to connect in this component
             socket.emit('create_room', room)
         }
@@ -56,7 +57,7 @@ const SocketContainer = () => {
     return (
         <>
         {!joinedRoom && <ChatNumberInput joinRoomHandler={joinRoomHandler} createRoomHandler={createRoomHandler}/>}
-        {joinedRoom && <ChatWindow room={room}/>}
+        {joinedRoom && <ChatWindow socket={socket}/>}
         </>
     )
 }

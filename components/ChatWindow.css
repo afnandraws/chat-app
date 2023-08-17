@@ -67,46 +67,57 @@
     overflow-y: scroll;
     scroll-behavior: smooth;
 
-    border: 1px black solid;
+
     display: flex;
     flex-direction: column;
+
+    padding-top: 480px;
+    padding-bottom: 5px;
 }
 
 .sentmessage {
-    background-color: azure;
+    background-color: transparent;
     direction: ltr;
     height: max-content;
-    min-width: 100px;
-    max-width: 96%;
+    min-width: 10px;
+    max-width: 90%;
     white-space: pre-wrap; 
     overflow-wrap: break-word;
     margin: 10px;
+    margin-left: 20px;
     align-self: flex-start; 
+   
 }
 
 .sentmessage div {
     background-color: #C0A3FF;
     font-size: large;
-    color: azure;
+    color:azure;
+
+    padding: 10px;
+    border-radius: 10px 10px 10px 0px;
 }
 
 .message {
-    background-color: azure;
+    background-color: transparent;
     direction: rtl;
     height: max-content;
-    min-width: 100px;
-    max-width: 96%;
+    min-width: 40px;
+    max-width: 90%;
     white-space: pre-wrap; 
     overflow-wrap: break-word;
     margin: 10px;
+    margin-right: 20px;
     align-self: flex-end;
-
 }
 
 
 .message div {
-    background-color: transparent;
+    background-color: azure;
     font-size: large;
     color:#567AF4;
+
+    padding: 10px;
+    border-radius: 10px 10px 0px 10px;
 
 }
