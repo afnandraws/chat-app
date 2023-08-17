@@ -1,12 +1,112 @@
-.container {
-    background-color: #567AF4;;
+.chatcontainer {
+    background-color: #567AF4;
     border-radius: 9px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-    color: red;
-    height: 600px;
+    height: 700px;
     width: 500px;
 }
 
-.topbar {
-    color: white;
+.chatheader {
+    background-color: #87c6e6b9;
+    height: 50px;
+}
+
+
+.chatfooter {
+    background-color: transparent;
+    height: 100px;
+    
+    display: flex;
+    align-items: center;
+    
+    margin: 12px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.chatfooter input {
+    border: none;
+    border-radius: 19px;
+    font-size: large;
+    background-color: azure;
+    
+    width: 70%;
+    height: 60px;
+    
+    padding-left: 18px;
+    padding-right: 20px;
+    margin-left: 10px;
+    
+}
+
+.chatfooter button {
+    outline: none;
+    border: 3px solid #87C6E6;
+    background-color: #567AF4;
+    border-radius: 19px;
+    
+    height: 60px;
+    width: 60px;
+    
+    margin-left: 15px;
+}
+
+.chatfooter button img {
+    background-color: transparent;
+}
+
+.chatmessages {
+    background-color: #567AF4;
+    height: 100%;
+    flex: 1;
+    
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.sentmessage {
+    background-color: azure;
+    direction: ltr;
+    height: max-content;
+    min-width: 100px;
+    max-width: 96%;
+    white-space: pre-wrap; 
+    overflow-wrap: break-word;
+    margin: 10px;
+    align-self: flex-start; 
+}
+
+.sentmessage div {
+    background-color: #C0A3FF;
+    font-size: large;
+    color: azure;
+}
+
+.message {
+    background-color: azure;
+    direction: rtl;
+    height: max-content;
+    min-width: 100px;
+    max-width: 96%;
+    white-space: pre-wrap; 
+    overflow-wrap: break-word;
+    margin: 10px;
+    align-self: flex-end;
+
+}
+
+
+.message div {
+    background-color: transparent;
+    font-size: large;
+    color:#567AF4;
+
 }

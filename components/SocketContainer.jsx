@@ -2,8 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+
 const ChatNumberInput = React.lazy(() => import("./ChatNumberInput"));
-const ChatWindow = React.lazy(() => import("./ChatWindow"));
+import ChatWindow from './ChatWindow'
+
+let room = '';
 
 const SocketContainer = () => {
     const [socket, setSocket] = useState(null)
@@ -37,7 +40,6 @@ const SocketContainer = () => {
 
     function createRoomHandler(event) {
         if (event.key === 'Enter') {
-            let room = '';
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             const charactersLength = characters.length;
             
@@ -54,7 +56,7 @@ const SocketContainer = () => {
     return (
         <>
         {!joinedRoom && <ChatNumberInput joinRoomHandler={joinRoomHandler} createRoomHandler={createRoomHandler}/>}
-        {joinedRoom && <ChatWindow />}
+        {joinedRoom && <ChatWindow room={room}/>}
         </>
     )
 }
