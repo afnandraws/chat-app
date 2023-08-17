@@ -6,20 +6,25 @@ import { io } from "socket.io-client";
 const ChatNumberInput = React.lazy(() => import("./ChatNumberInput"));
 import ChatWindow from './ChatWindow'
 
-let room = '';
+let userID = '';
+let users = []
 
 const SocketContainer = () => {
     const [socket, setSocket] = useState(null)
     const [joinedRoom, setJoinedRoom] = useState(false)
-
+    
+    let room = '';
+    
     useEffect(() => {
         
         socket?.on('send_room',(room) => {
-            console.log(room.room);
+            users = room.users;
             localStorage.setItem("room", room.room) //this stores the pageID in the localStorage
             setJoinedRoom(true)
         })
         
+        socket?.on('initial_connection', (id) => {userID = id; console.log(userID)})
+
         if (socket === null) {
             setSocket(io('ws://localhost:8080', { autoConnect: false }))
         }
@@ -57,7 +62,7 @@ const SocketContainer = () => {
     return (
         <>
         {!joinedRoom && <ChatNumberInput joinRoomHandler={joinRoomHandler} createRoomHandler={createRoomHandler}/>}
-        {joinedRoom && <ChatWindow socket={socket}/>}
+        {joinedRoom && <ChatWindow users={users} socket={socket} userID={userID}/>}
         </>
     )
 }

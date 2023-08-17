@@ -98,6 +98,12 @@
     border-radius: 10px 10px 10px 0px;
 }
 
+.sentmessage span {
+    font-size: small;
+    color: rgb(22, 22, 22);
+    background-color: transparent;
+}
+
 .message {
     background-color: transparent;
     direction: rtl;
@@ -120,4 +126,10 @@
     padding: 10px;
     border-radius: 10px 10px 0px 10px;
 
+}
+
+.message span {
+    font-size: small;
+    color: rgb(22, 22, 22);
+    background-color: transparent;
 }

@@ -11,16 +11,19 @@ const io = new Server(http, {
 
 io.on("connection", (socket) => {
 	console.log(`${socket.id} connected`);
-	socket.emit("hello", socket.id);
+	socket.emit("initial_connection", socket.id);
 
-	socket.on("join_room", (room) => {
+	socket.on("join_room", async (room) => {
 		if (io.sockets.adapter.rooms.get(room) !== undefined) {
 			socket.join(room);
-			console.log("worked");
-
+			const users = await io.in(room).fetchSockets();
+			const userArray = [];
+			for (const user of users) {
+				userArray.push(user.id);
+			}
 			socket.emit("send_room", {
 				room: room,
-				users: "",
+				users: userArray,
 			});
 		} else {
 			console.log(`didn't worked`);
@@ -36,8 +39,17 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("send_message", (message) => {
+		const temp = {
+			message: message.message,
+			room: message.room,
+			time: new Date().toLocaleTimeString("en-UK", {
+				hour: "2-digit",
+				minute: "2-digit",
+			}),
+			creator: socket.id,
+		};
 		console.log(message);
-		socket.to(message.room).emit("receive_message", { message: message });
+		socket.to(message.room).emit("receive_message", temp);
 		socket.emit("sent_message", true);
 	});
 });
