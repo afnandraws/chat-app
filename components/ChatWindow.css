@@ -1,6 +1,6 @@
 .chatcontainer {
     background-color: #567AF4;
-    border-radius: 9px;
+    border-radius: 15px;
     
     display: flex;
     flex-direction: column;
@@ -12,9 +12,30 @@
 
 .chatheader {
     background-color: #87c6e6b9;
-    height: 50px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.chatheader span {
+    background-color: transparent;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: x-large;
+    margin-left: 20px;
+}
+
+.chatheader button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.chatheader button img {
+    background-color: transparent;
+}
 
 .chatfooter {
     background-color: transparent;
@@ -55,6 +76,11 @@
     margin-left: 15px;
 }
 
+.chatfooter button:hover {
+    outline: none;
+    background-color: #87C6E6;
+}
+
 .chatfooter button img {
     background-color: transparent;
 }
@@ -77,7 +103,6 @@
 
 .sentmessage {
     background-color: transparent;
-    direction: ltr;
     height: max-content;
     min-width: 10px;
     max-width: 90%;
@@ -106,9 +131,9 @@
 
 .message {
     background-color: transparent;
-    direction: rtl;
+    text-align: right;
     height: max-content;
-    min-width: 40px;
+    min-width: 10px;
     max-width: 90%;
     white-space: pre-wrap; 
     overflow-wrap: break-word;

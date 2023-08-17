@@ -47,6 +47,7 @@ io.on("connection", (socket) => {
 				minute: "2-digit",
 			}),
 			creator: socket.id,
+			username: message.username,
 		};
 		console.log(message);
 		socket.to(message.room).emit("receive_message", temp);

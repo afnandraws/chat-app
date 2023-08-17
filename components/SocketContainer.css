@@ -1,0 +1,24 @@
+.username {
+    font-size: large;
+    color: white;
+
+    display: flex;
+    padding: 10px 12px;
+    margin-bottom: 30px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: white;
+    color: black;
+
+    width: 300px;
+    font-size: medium;
+}
+
+.error {
+    position: relative;
+    padding-bottom: 2px;
+    font-size: small;
+    color: red;
+}
