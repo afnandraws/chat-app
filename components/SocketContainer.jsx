@@ -9,19 +9,19 @@ const ChatNumberInput = React.lazy(() => import("./ChatNumberInput"));
 import ChatWindow from './ChatWindow'
 
 let userID = '';
-let users = []
+let room = ''; //contains the room which is then stored in localStorage
 
 const SocketContainer = () => {
     const [socket, setSocket] = useState(null)
     const [joinedRoom, setJoinedRoom] = useState(false)
     const [username, setUsername] = useState('')
     const [error, setError] = useState(false)
-    let room = ''; //contains the room which is then stored in localStorage
     
     useEffect(() => {
         
+        //need an undefined_room handler
+
         socket?.on('send_room',(room) => {
-            users = room.users;
             localStorage.setItem("room", room.room) //this stores the roomID in the localStorage
             setJoinedRoom(true)
         })
@@ -60,7 +60,8 @@ const SocketContainer = () => {
             localStorage.setItem("room", room)
             socket.connect() //might not need to connect in this component
             socket.emit('create_room', room)
-            socket.emit('join_room', room)
+            socket.emit("join_room", room)
+            // socket.emit('join_room', { room: room, firstMessage: event.target.value})
 
         }
     }
@@ -76,7 +77,7 @@ const SocketContainer = () => {
         <ChatNumberInput joinRoomHandler={joinRoomHandler} createRoomHandler={createRoomHandler}/>
         </>
         }
-        {joinedRoom && <ChatWindow users={users} socket={socket} userID={userID} username={username}/>}
+        {joinedRoom && <ChatWindow socket={socket} userID={userID} username={username}/>}
         </>
     )
 }
