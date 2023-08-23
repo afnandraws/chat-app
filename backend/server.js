@@ -9,6 +9,15 @@ const io = new Server(http, {
 	cors: { origin: "http://localhost:3000" },
 });
 
+function keepRoomOpen(room, time) {
+	// interval to join room
+	const int = setInterval(() => io.in(room), 5000);
+
+	setTimeout(() => clearInterval(int), time);
+}
+
+//might need to do io.on("disconnecting")
+
 io.on("connection", (socket) => {
 	console.log(`${socket.id} connected`);
 	socket.emit("initial_connection", socket.id);
@@ -52,6 +61,26 @@ io.on("connection", (socket) => {
 		console.log(message);
 		socket.to(message.room).emit("receive_message", temp);
 		socket.emit("sent_message", true);
+	});
+
+	socket.on("post_pastMessages", (message) => {
+		// if (io.sockets.adapter.rooms.get(room) !== undefined) {
+		// }
+	});
+
+	socket.on("disconnecting", async () => {
+		const rooms = []; //need to get the room the socket was a part of/ is disconnecting from
+		// can the client side emit something before disconnecting/on disconnect
+		// remove default room
+		// rooms.splice(rooms.indexOf(socket.id), 1);
+
+		console.log(rooms); // rooms socket was in
+
+		const users = await io.in(rooms).fetchSockets();
+
+		if (users.length === 0) {
+			// keepRoomOpen(rooms, 300000);
+		}
 	});
 });
 

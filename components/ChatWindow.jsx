@@ -3,10 +3,11 @@ import sendImage from '../public/send.svg'
 import userImage from '../public/users.svg'
 import Image from 'next/image';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import db from '../indexeddb/db'
 import { useLiveQuery } from 'dexie-react-hooks';
+
 
 const now = Date.now();
 
@@ -18,17 +19,30 @@ const ChatWindow = ({ socket, userID, username }) => {
     const messageRef = useRef()
     const [messages, setMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState('')
+    const room = localStorage.getItem('room');
 
-    const pastMessages = useLiveQuery(
-            () => db.messages
-            .where('username').equalsIgnoreCase(username)
-            .toArray()
-          );
-    console.log(pastMessages);
+
+    // const pastMessages = useLiveQuery(
+    //         () => db.messages
+    //         .where("time").above(fiveMinsAgo)
+    //         .and(message => message.room === room)    
+    //         .toArray());
+    
+        // if (pastMessages) {
+        //     for (const item of pastMessages) {
+        //         if (item.username === username) {
+        //             console.log(item)
+        //         } else {
+        //         }
+        //         // setMessages([...messages, {message: currentMessage, room: room, time: new Date().toLocaleTimeString('en-UK', {hour: '2-digit', minute: '2-digit'}), username: username}])
+        //         // socket.emit('send_message', {message: currentMessage, room: room, username: username})
+        //     };
+        //     console.log(pastMessages);
+        // }
+
     //this will get all messages sent in the last 5 minutes from past sessions with the same username
 
 
-    const room = localStorage.getItem('room');
 
     async function messageHandler(event) {
         if (event.key === 'Enter' && currentMessage || event.type === 'click' && currentMessage) {
@@ -57,7 +71,6 @@ const ChatWindow = ({ socket, userID, username }) => {
     }, [socket])
     
     useEffect(() => {
-        console.log(messages)
         messageRef.current.scrollTop = messageRef.current.scrollHeight;
     }, [messages])
 
@@ -68,11 +81,29 @@ const ChatWindow = ({ socket, userID, username }) => {
             .delete()
             .then(function (deleteCount) {
                 console.log( "Deleted " + deleteCount + " objects"); //this deletes items that are 5 minutes old
-            })
-        };
-      
-        deletePastMessages()
+            })};
 
+        async function getPastMessages() {
+            const pastMessages = await db.messages
+                .where("time").above(fiveMinsAgo)
+                .and(message => message.room === room)    
+                .toArray();
+        
+            if (pastMessages) {
+                for (const item of pastMessages) {
+                    if (item.username === username) {
+                        console.log(item)
+                    } else {
+                    }
+                    // setMessages([...messages, {message: currentMessage, room: room, time: new Date().toLocaleTimeString('en-UK', {hour: '2-digit', minute: '2-digit'}), username: username}])
+                    // socket.emit('send_message', {message: currentMessage, room: room, username: username})
+                };
+                console.log(pastMessages);
+            }
+        }
+
+        getPastMessages()
+        deletePastMessages()
     }, [])
     
     
