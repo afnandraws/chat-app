@@ -27,7 +27,7 @@ const SocketContainer = () => {
         socket?.on('initial_connection', (id) => {userID = id; console.log(userID)})
 
         if (socket === null) {
-            setSocket(io('ws://chat-app-r3il.onrender.com/:8080', { autoConnect: false }))
+            setSocket(io('wss://chat-app-r3il.onrender.com', { autoConnect: false }))
         }
 
         return () => {
