@@ -1,5 +1,3 @@
-"use client"
-
 import './SocketContainer.css'
 
 import React, { useEffect, useState } from "react";
@@ -29,7 +27,7 @@ const SocketContainer = () => {
         socket?.on('initial_connection', (id) => {userID = id; console.log(userID)})
 
         if (socket === null) {
-            setSocket(io('ws://localhost:8080', { autoConnect: false }))
+            setSocket(io('ws://chat-app-r3il.onrender.com/:8080', { autoConnect: false }))
         }
 
         return () => {
