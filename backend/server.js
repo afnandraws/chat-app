@@ -5,7 +5,12 @@ const { Server } = require("socket.io");
 
 const port = 8080;
 
-const io = new Server(http, {});
+const io = new Server(http, {
+	cors: {
+		origin: "https://chat-app-coral-omega.vercel.app",
+		methods: ["GET", "POST"],
+	},
+});
 
 function keepRoomOpen(room, time) {
 	// interval to join room
@@ -13,7 +18,6 @@ function keepRoomOpen(room, time) {
 
 	setTimeout(() => clearInterval(int), time);
 }
-
 //might need to do io.on("disconnecting")
 
 io.on("connection", (socket) => {
