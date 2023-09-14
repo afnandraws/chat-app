@@ -15,7 +15,7 @@ const oneMinsAgo = new Date(now - (1 * 60 * 1000)).toLocaleTimeString();
 const fiveMinsAgo = new Date(now - (5 * 60 * 1000)).toLocaleTimeString();
 const twoHoursAgo = new Date(now - (2 * 60 * 60 * 1000)).toLocaleTimeString();
 
-const ChatWindow = ({ socket, userID, username }) => {
+const ChatWindow = ({ socket, userID, username, firstMessage }) => {
     const messageRef = useRef()
     const [messages, setMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState('')
@@ -75,6 +75,11 @@ const ChatWindow = ({ socket, userID, username }) => {
     }, [messages])
 
     useEffect(() => {
+        if (firstMessage) {
+            setMessages([...messages, {message: firstMessage, room: room, time: new Date().toLocaleTimeString('en-UK', {hour: '2-digit', minute: '2-digit'}), username: username}])
+            socket.emit('send_message', {message: firstMessage, room: room, username: username})
+        }
+
         async function deletePastMessages() {
             await db.messages
             .where("time").below(fiveMinsAgo)

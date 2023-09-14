@@ -1,0 +1,220 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./components/SocketContainer.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+.username {
+    font-size: large;
+    color: white;
+
+    display: flex;
+    padding: 10px 12px;
+    margin-bottom: 30px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: white;
+    color: black;
+
+    width: 300px;
+    font-size: medium;
+}
+
+.error {
+    position: relative;
+    padding-bottom: 2px;
+    font-size: small;
+    color: red;
+}
+
+.loading {
+    animation: flash 2s infinite;
+}
+
+@keyframes flash {
+    0% {
+      opacity: 0%;
+    }
+    50% {
+      opacity: 100%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[12].use[3]!./components/ChatWindow.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.chatcontainer {
+    background-color: #567AF4;
+    border-radius: 15px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 700px;
+    width: 500px;
+}
+
+.chatheader {
+    background-color: #87c6e6b9;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatheader span {
+    background-color: transparent;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: x-large;
+    margin-left: 20px;
+}
+
+.chatheader button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.chatheader button img {
+    background-color: transparent;
+}
+
+.chatfooter {
+    background-color: transparent;
+    height: 100px;
+    
+    display: flex;
+    align-items: center;
+    
+    margin: 12px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.chatfooter input {
+    border: none;
+    border-radius: 19px;
+    font-size: large;
+    background-color: azure;
+    
+    width: 70%;
+    height: 60px;
+    
+    padding-left: 18px;
+    padding-right: 20px;
+    margin-left: 10px;
+    
+}
+
+.chatfooter button {
+    outline: none;
+    border: 3px solid #87C6E6;
+    background-color: #567AF4;
+    border-radius: 19px;
+    
+    height: 60px;
+    width: 60px;
+    
+    margin-left: 15px;
+}
+
+.chatfooter button:hover {
+    outline: none;
+    background-color: #87C6E6;
+}
+
+.chatfooter button img {
+    background-color: transparent;
+}
+
+.chatmessages {
+    background-color: #567AF4;
+    height: 100%;
+    flex: 1 1;
+    
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 480px;
+    padding-bottom: 5px;
+}
+
+.sentmessage {
+    background-color: transparent;
+    height: max-content;
+    min-width: 10px;
+    max-width: 90%;
+    white-space: pre-wrap; 
+    overflow-wrap: break-word;
+    margin: 10px;
+    margin-left: 20px;
+    align-self: flex-start; 
+   
+}
+
+.sentmessage div {
+    background-color: #C0A3FF;
+    font-size: large;
+    color:azure;
+
+    padding: 10px;
+    border-radius: 10px 10px 10px 0px;
+}
+
+.sentmessage span {
+    font-size: small;
+    color: rgb(22, 22, 22);
+    background-color: transparent;
+}
+
+.message {
+    background-color: transparent;
+    text-align: right;
+    height: max-content;
+    min-width: 10px;
+    max-width: 90%;
+    white-space: pre-wrap; 
+    overflow-wrap: break-word;
+    margin: 10px;
+    margin-right: 20px;
+    align-self: flex-end;
+}
+
+
+.message div {
+    background-color: azure;
+    font-size: large;
+    color:#567AF4;
+
+    padding: 10px;
+    border-radius: 10px 10px 0px 10px;
+
+}
+
+.message span {
+    font-size: small;
+    color: rgb(22, 22, 22);
+    background-color: transparent;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[3]!./src/app/page.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+.page_main__GlU4n {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
