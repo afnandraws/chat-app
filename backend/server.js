@@ -5,10 +5,7 @@ const { Server } = require("socket.io");
 
 const port = 8080;
 
-const io = new Server(http, {
-	cors: { origin: "https://chat-app-coral-omega.vercel.app" },
-	// cors: { origin: "http://localhost:3000" },
-});
+const io = new Server(http, {});
 
 function keepRoomOpen(room, time) {
 	// interval to join room
