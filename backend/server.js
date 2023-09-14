@@ -6,7 +6,7 @@ const { Server } = require("socket.io");
 const port = 8080;
 
 const io = new Server(http, {
-	cors: { origin: "https://chat-app-r3il.onrender.com:8080" },
+	cors: { origin: "https://chat-app-coral-omega.vercel.app" },
 	// cors: { origin: "http://localhost:3000" },
 });
 
