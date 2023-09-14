@@ -6,7 +6,8 @@ const { Server } = require("socket.io");
 const port = 8080;
 
 const io = new Server(http, {
-	cors: { origin: "http://localhost:3000" },
+	cors: { origin: "https://chat-app-r3il.onrender.com:8080" },
+	// cors: { origin: "http://localhost:3000" },
 });
 
 function keepRoomOpen(room, time) {
