@@ -7,7 +7,7 @@ const port = 8080;
 
 const io = new Server(http, {
 	cors: {
-		origin: `http://localhost:3000`,
+		origin: `https://chat-app-coral-omega.vercel.app`,
 		methods: ["GET", "POST"],
 	},
 });
