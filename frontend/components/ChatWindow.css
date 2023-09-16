@@ -142,6 +142,18 @@
     align-self: flex-end;
 }
 
+.userlist {
+    position: absolute;
+    
+    width: 200px;
+    min-height: 30px;
+    height: max-content;
+
+    border-radius: 5px;
+    background-color: red;
+    color: black;
+
+}
 
 .message div {
     background-color: azure;
@@ -159,9 +171,9 @@
     background-color: transparent;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .chatcontainer {
-        height: calc(100% - 1rem);
-        width: calc(100% - 2rem);
+        height: 800px;
+        width: calc(120 - 0.5rem);
     }
-} */
+}

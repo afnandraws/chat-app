@@ -189,6 +189,18 @@
     align-self: flex-end;
 }
 
+.userlist {
+    position: absolute;
+    
+    width: 200px;
+    min-height: 30px;
+    height: max-content;
+
+    border-radius: 5px;
+    background-color: red;
+    color: black;
+
+}
 
 .message div {
     background-color: azure;
@@ -206,12 +218,12 @@
     background-color: transparent;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .chatcontainer {
-        height: calc(100% - 1rem);
-        width: calc(100% - 2rem);
+        height: 800px;
+        width: calc(120 - 0.5rem);
     }
-} */
+}
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[3]!./src/app/page.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************/
@@ -225,4 +237,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: max-content;
 }

@@ -15,11 +15,14 @@ const oneMinsAgo = new Date(now - (1 * 60 * 1000)).toLocaleTimeString();
 const fiveMinsAgo = new Date(now - (5 * 60 * 1000)).toLocaleTimeString();
 const twoHoursAgo = new Date(now - (2 * 60 * 60 * 1000)).toLocaleTimeString();
 
-const ChatWindow = ({ socket, userID, username, firstMessage }) => {
-    const messageRef = useRef()
+const ChatWindow = ({ socket, userID, username, firstMessage, userList }) => {
     const [messages, setMessages] = useState([])
     const [currentMessage, setCurrentMessage] = useState('')
+    const [openUserList, setOpenUserList] = useState(false)
+    
     const room = localStorage.getItem('room');
+    const messageRef = useRef()
+
 
 
     // const pastMessages = useLiveQuery(
@@ -49,7 +52,7 @@ const ChatWindow = ({ socket, userID, username, firstMessage }) => {
             setMessages([...messages, {message: currentMessage, room: room, time: new Date().toLocaleTimeString('en-UK', {hour: '2-digit', minute: '2-digit'}), username: username}])
             socket.emit('send_message', {message: currentMessage, room: room, username: username})
             setCurrentMessage('')
-            
+
             await db.messages.add({
                 room: room, 
                 socketID    : userID, 
@@ -118,8 +121,11 @@ const ChatWindow = ({ socket, userID, username, firstMessage }) => {
                 {/* Need to make a showUsers thing and style the chat header */}
             <div className='chatheader'>
                 <span>#{room}</span>
-                <button><Image alt='users' src={userImage} height={30}/></button>
+                <button onClick={() => {setOpenUserList(!openUserList)}}><Image alt='users' src={userImage} height={30}/></button>
             </div>
+            {openUserList ? <div className='userlist'>{userList.map((user) => {
+                <span>{user}</span>
+            })}</div> : ''}
             <div className='chatmessages' ref={messageRef}>
             {messages?.map((object, index) => (
                 <div key={index} className={object.username === username ? "message" : "sentmessage"}>
