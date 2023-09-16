@@ -24,6 +24,7 @@
 }
 
 .loading {
+    width: 350px;
     animation: flash 2s infinite;
 }
 

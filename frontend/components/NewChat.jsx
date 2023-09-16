@@ -4,7 +4,7 @@ const NewChat = ({ createRoomHandler }) => {
     return (
         <div className='newchat'>
         <input onKeyDown={(event) => {createRoomHandler(event)}} type="text" placeholder="Or type to start a new chat!" />
-        <button>send</button>
+        <button onClick={(event) => {createRoomHandler(event)}}>send</button>
         </div>
     );
 }

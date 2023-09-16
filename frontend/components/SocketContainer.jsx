@@ -50,7 +50,7 @@ const SocketContainer = () => {
     }
 
     function createRoomHandler(event) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' || event.target.type === 'submit') {
             if (!username) {setError(true); return};
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             const charactersLength = characters.length;

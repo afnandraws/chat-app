@@ -27,6 +27,7 @@
 }
 
 .loading {
+    width: 350px;
     animation: flash 2s infinite;
 }
 
@@ -204,6 +205,13 @@
     color: rgb(22, 22, 22);
     background-color: transparent;
 }
+
+/* @media (max-width: 768px) {
+    .chatcontainer {
+        height: calc(100% - 1rem);
+        width: calc(100% - 2rem);
+    }
+} */
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[7].use[3]!./src/app/page.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************/
