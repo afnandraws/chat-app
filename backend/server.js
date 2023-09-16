@@ -7,7 +7,7 @@ const port = 8080;
 
 const io = new Server(http, {
 	cors: {
-		origin: "https://chat-app-coral-omega.vercel.app",
+		origin: `http://localhost:3000`,
 		methods: ["GET", "POST"],
 	},
 });
@@ -24,18 +24,17 @@ io.on("connection", (socket) => {
 	console.log(`${socket.id} connected`);
 	socket.emit("initial_connection", socket.id);
 
-	socket.on("join_room", async (room) => {
-		if (io.sockets.adapter.rooms.get(room) !== undefined) {
-			socket.join(room);
-			const users = await io.in(room).fetchSockets();
-			const userArray = [];
-			for (const user of users) {
-				userArray.push(user.id);
-			}
+	socket.on("join_room", (room) => {
+		console.log(room.room);
+		if (io.sockets.adapter.rooms.get(room.room) !== undefined) {
+			socket.join(room.room);
+
 			socket.emit("send_room", {
-				room: room,
-				users: userArray,
+				room: room.room,
+				user: room.username,
 			});
+
+			socket.broadcast.emit("new_join", room.username);
 		} else {
 			console.log(`didn't worked`);
 			socket.emit("undefined_room"); //need to make this on the client side
