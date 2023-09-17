@@ -12,38 +12,56 @@ const io = new Server(http, {
 	},
 });
 
+const users = {};
+
 function keepRoomOpen(room, time) {
 	// interval to join room
 	const int = setInterval(() => io.in(room), 5000);
 
 	setTimeout(() => clearInterval(int), time);
 }
-//might need to do io.on("disconnecting")
 
 io.on("connection", (socket) => {
 	console.log(`${socket.id} connected`);
 	socket.emit("initial_connection", socket.id);
 
 	socket.on("join_room", (room) => {
-		console.log(room.room);
 		if (io.sockets.adapter.rooms.get(room.room) !== undefined) {
 			socket.join(room.room);
 
+			users[socket.id] = { username: room.username, room: room.room };
+
+			// Object.values(users).filter((user) => user.room === room.room)
+
+			io.in(room.room).emit("new_join", Object.values(users));
+
 			socket.emit("send_room", {
 				room: room.room,
-				user: room.username,
 			});
-
-			socket.broadcast.emit("new_join", room.username);
 		} else {
 			console.log(`didn't worked`);
 			socket.emit("undefined_room"); //need to make this on the client side
 		}
 	});
 
+	socket.on("disconnect", () => {
+		// i want to emit to the
+		console.log(socket.id);
+		// console.log(users.hasOwnProperty(socket.id));
+		// console.log(Object.values(users));
+		// console.log(users[socket.id].room);
+
+		// const room = users[socket.id];
+
+		delete users[socket.id];
+
+		// const temp = Object.values(users).filter((user) => room === user.room);
+
+		io.emit("new_join", Object.values(users));
+	});
+
 	socket.on("create_room", (room) => {
 		if (io.sockets.adapter.rooms.get(room) === undefined) {
-			console.log(room);
 			socket.join(room);
 		}
 	});
