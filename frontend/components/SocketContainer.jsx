@@ -23,16 +23,13 @@ const SocketContainer = () => {
     useEffect(() => {
         //need an undefined_room handler
 
-        socket?.on("new_join", user => {
-            console.log(user)
-            setUserList(prevState => [...prevState, user])
-
+        socket?.on("new_join", users => {
+            console.log(users)
+            setUserList(users)
         })
 
         socket?.on('send_room',(room) => {
             localStorage.setItem("room", room.room) //this stores the roomID in the localStorage
-            setUserList(prevState => [...prevState, username])
-            console.log(userList)
             setLoading(false)
             setJoinedRoom(true)
         })
