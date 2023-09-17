@@ -118,7 +118,7 @@ const ChatWindow = ({ socket, userID, username, firstMessage, userList }) => {
             <div className='chatheader'>
                 <span>#{room}</span>
                 {userList.length > 0 && <button onClick={() => {setOpenUserList(!openUserList)}}><Image alt='users' src={userImage} height={30}/></button>}
-                {openUserList ? <div className='userlist'>{userList.map(user, index => {
+                {openUserList ? <div className='userlist'>{userList.map((user, index) => {
                     return <div key={index}>{user.username}</div> 
                 })}</div> : ''}
             </div>
