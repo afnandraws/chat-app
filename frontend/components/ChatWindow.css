@@ -8,6 +8,7 @@
 
     height: 700px;
     width: 500px;
+    position: relative;
 }
 
 .chatheader {
@@ -110,7 +111,11 @@
     overflow-wrap: break-word;
     margin: 10px;
     margin-left: 20px;
-    align-self: flex-start; 
+    align-self: flex-start;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
    
 }
 
@@ -121,6 +126,9 @@
 
     padding: 10px;
     border-radius: 10px 10px 10px 0px;
+
+    max-width: max-content;
+
 }
 
 .sentmessage span {
@@ -140,19 +148,38 @@
     margin: 10px;
     margin-right: 20px;
     align-self: flex-end;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .userlist {
     position: absolute;
+    right: 20px;
+    top: 60px;
     
-    width: 200px;
     min-height: 30px;
     height: max-content;
 
     border-radius: 5px;
-    background-color: red;
-    color: black;
+    padding: 5px;
+    
+    border: azure  2px solid;
+    background-color: #567AF4;
+    color: azure;
 
+    text-align: right;
+    width: 100px;
+
+
+}
+
+.userlist div {
+    border-radius: 5px;
+    background-color: transparent;
+
+    padding: 5px;
 }
 
 .message div {
@@ -162,6 +189,9 @@
 
     padding: 10px;
     border-radius: 10px 10px 0px 10px;
+
+    max-width: max-content;
+
 
 }
 
@@ -174,6 +204,9 @@
 @media (max-width: 768px) {
     .chatcontainer {
         height: 800px;
-        width: calc(120 - 0.5rem);
+        max-height: 100%;
+    }
+
+    .userlist {
     }
 }

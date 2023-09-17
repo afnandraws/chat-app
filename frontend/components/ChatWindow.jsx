@@ -36,9 +36,7 @@ const ChatWindow = ({ socket, userID, username, firstMessage, userList }) => {
         //         if (item.username === username) {
         //             console.log(item)
         //         } else {
-        //         }
-        //         // setMessages([...messages, {message: currentMessage, room: room, time: new Date().toLocaleTimeString('en-UK', {hour: '2-digit', minute: '2-digit'}), username: username}])
-        //         // socket.emit('send_message', {message: currentMessage, room: room, username: username})
+        //          // socket.emit('send_message', {message: currentMessage, room: room, username: username})
         //     };
         //     console.log(pastMessages);
         // }
@@ -113,19 +111,17 @@ const ChatWindow = ({ socket, userID, username, firstMessage, userList }) => {
         getPastMessages()
         deletePastMessages()
     }, [])
-    
-    
 
     return (
         <div className='chatcontainer'>
                 {/* Need to make a showUsers thing and style the chat header */}
             <div className='chatheader'>
                 <span>#{room}</span>
-                <button onClick={() => {setOpenUserList(!openUserList)}}><Image alt='users' src={userImage} height={30}/></button>
+                {userList.length > 0 && <button onClick={() => {setOpenUserList(!openUserList)}}><Image alt='users' src={userImage} height={30}/></button>}
+                {openUserList ? <div className='userlist'>{userList.map(user => {
+                    return <div>{user.username}</div> 
+                })}</div> : ''}
             </div>
-            {openUserList ? <div className='userlist'>{userList.map((user) => {
-                <span>{user}</span>
-            })}</div> : ''}
             <div className='chatmessages' ref={messageRef}>
             {messages?.map((object, index) => (
                 <div key={index} className={object.username === username ? "message" : "sentmessage"}>
