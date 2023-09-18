@@ -7,7 +7,7 @@
     justify-content: space-between;
 
     height: 700px;
-    width: 500px;
+    width: 100%;
     position: relative;
 }
 
@@ -203,10 +203,6 @@
 
 @media (max-width: 768px) {
     .chatcontainer {
-        height: 800px;
-        max-height: 100%;
-
-        width: calc(100% - 2rem);
     }
 
     .userlist {

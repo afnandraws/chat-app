@@ -15,6 +15,7 @@
 
 @media (max-width: 768px) {
   .main {
+      height: calc(100dvh - 2rem);
       width: calc(100% - 1rem);
   }
 }
