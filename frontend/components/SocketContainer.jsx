@@ -41,8 +41,8 @@ const SocketContainer = () => {
         socket?.on('initial_connection', (id) => {userID = id; console.log(userID)})
 
         if (socket === null) {
-            setSocket(io('https://chat-app-r3il.onrender.com', { autoConnect: false }))
-            // setSocket(io('http://localhost:8080', { autoConnect: false }))
+            // setSocket(io('https://chat-app-r3il.onrender.com', { autoConnect: false }))
+            setSocket(io('http://localhost:8080', { autoConnect: false }))
         }
 
         return () => {
