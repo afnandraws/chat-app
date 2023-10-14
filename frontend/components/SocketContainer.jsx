@@ -66,7 +66,7 @@ const SocketContainer = () => {
             const roomCode = event.current.value
             console.log(roomCode)
             socket.connect()
-            socket.emit('join_room', {room: roomCode.toUppercase(), username: username})
+            socket.emit('join_room', {room: roomCode, username: username})
             setLoading(true)
         } 
 
