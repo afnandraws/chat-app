@@ -56,13 +56,15 @@ const SocketContainer = () => {
     
         if (event.key === 'Enter') {
             if (!username) {setError(true); return};
-            const roomCode = event.target.value
+            const roomCode = event.target.value;
+            console.log(roomCode)
             socket.connect()
-            socket.emit('join_room', {room: roomCode.toUppercase(), username: username})
+            socket.emit('join_room', {room: roomCode, username: username})
             setLoading(true)
         } else if (buttonBool) {
             if (!username) {setError(true); return};
             const roomCode = event.current.value
+            console.log(roomCode)
             socket.connect()
             socket.emit('join_room', {room: roomCode.toUppercase(), username: username})
             setLoading(true)
@@ -76,7 +78,6 @@ const SocketContainer = () => {
             room = ''
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             const charactersLength = characters.length;
-            
             for (let i = 0; i < 5; i++) {
                 room += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
