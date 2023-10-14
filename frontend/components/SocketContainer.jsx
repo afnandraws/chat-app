@@ -52,17 +52,26 @@ const SocketContainer = () => {
       }, [socket])
 
     
-    function joinRoomHandler(event) {
+    function joinRoomHandler(event, buttonBool) {
+    
         if (event.key === 'Enter') {
             if (!username) {setError(true); return};
+            const roomCode = event.target.value
             socket.connect()
-            socket.emit('join_room', {room: event.target.value, username: username})
+            socket.emit('join_room', {room: roomCode.toUppercase(), username: username})
             setLoading(true)
-        }
+        } else if (buttonBool) {
+            if (!username) {setError(true); return};
+            const roomCode = event.current.value
+            socket.connect()
+            socket.emit('join_room', {room: roomCode.toUppercase(), username: username})
+            setLoading(true)
+        } 
+
     }
 
     function createRoomHandler(event) {
-        if (event.key === 'Enter' || event.target.type === 'submit') {
+        if (event.target.type === 'submit') {
             if (!username) {setError(true); return};
             room = ''
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -71,6 +80,7 @@ const SocketContainer = () => {
             for (let i = 0; i < 5; i++) {
                 room += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
+
             console.log(room)
             localStorage.setItem("room", room)
             setLoading(true)

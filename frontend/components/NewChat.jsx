@@ -1,10 +1,11 @@
-import './NewChat.css'
+import styles from './NewChat.module.css'
 
-const NewChat = ({ createRoomHandler }) => {
+const NewChat = ({ createRoomHandler, joinRoomHandler, roomNumberRef }) => {
     return (
-        <div className='newchat'>
-        <input onKeyDown={(event) => {createRoomHandler(event)}} type="text" placeholder="Or type to start a new chat!" />
-        <button onClick={(event) => {createRoomHandler(event)}}>send</button>
+        <div className={styles.newchat}>
+        <button onClick={() => {joinRoomHandler(roomNumberRef)}}>join a room</button>
+        <button onClick={(event) => {createRoomHandler(event)}}>create room</button>
+        {/* <input onKeyDown={(event) => {createRoomHandler(event)}} type="text" placeholder="Or type to start a new chat!" /> */}
         </div>
     );
 }

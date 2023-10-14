@@ -1,0 +1,42 @@
+.newchat {
+    font-size: large;
+    color: white;
+    
+    padding: 20px;
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+}
+
+.newchat input {
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: white;
+    color: black;
+
+    width: 220px;
+    font-size: medium;
+}
+
+.newchat input::placeholder {
+    color: #567bf49b;
+}
+
+.newchat button {
+    padding: 10px;
+
+    background-color: #567AF4;
+    color: white;
+    
+    border: none;
+    border-radius: 6px;
+    font-size: medium;
+}
